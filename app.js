@@ -30,7 +30,7 @@ app.get('/beers', (req, res, next) => {
 app.get('/random-beer', (req, res, next) => {
   punkAPI.getRandom().then(responseFromApi => {
     console.log(responseFromApi);
-    const data = { randomBeer: responseFromApi };
+    const data = { randomBeer: responseFromApi[0] };
     res.render('RandomBeer', data);
   });
 });
