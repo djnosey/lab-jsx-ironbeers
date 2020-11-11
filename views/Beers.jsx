@@ -7,7 +7,11 @@ function Beers(props) {
     <Layout>
       <div>
         {props.beersFromApi.map(beerObj => {
-          return <BeerCard randomBeer={beerObj} hideDetails={true} />;
+          return (
+            <a href={`/beer/${beerObj.id}`}>
+              <BeerCard randomBeer={beerObj} hideDetails={true} />
+            </a>
+          );
         })}
       </div>
     </Layout>
