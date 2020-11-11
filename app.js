@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const erv = require('express-react-views');
 const PunkAPIWrapper = require('punkapi-javascript-wrapper');
@@ -19,7 +20,21 @@ app.get('/', (req, res) => {
   res.render('Home');
 });
 
+app.get('/beers', (req, res, next) => {
+  punkAPI.getBeers().then(beersFromApi => {
+    const data = { beersFromApi: beersFromApi };
+    res.render('Beers', data);
+  });
+});
+
+app.get('/random-beer', (req, res, next) => {
+  punkAPI.getRandom().then(responseFromApi => {
+    console.log(responseFromApi);
+    const data = { randomBeer: responseFromApi };
+    res.render('RandomBeer', data);
+  });
+});
 
 app.listen(3000, () => {
-  console.log('🏃‍ on port 3000')
+  console.log('🏃‍ on port 3000');
 });
